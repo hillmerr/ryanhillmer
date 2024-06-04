@@ -1,2 +1,2 @@
-# ryanhillmer.github.io
+# ryanhillmer
 personal website
