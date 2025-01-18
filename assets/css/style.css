@@ -820,3 +820,32 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+
+
+/* Rotating Image Styles */
+.rotating-image-container {
+  width: 100%;
+  max-width: 400px;
+  height: 400px; /* Fixed height to maintain consistency */
+  overflow: hidden;
+  position: relative;
+}
+
+.rotating-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This ensures images cover the container properly */
+  transition: opacity 0.5s ease;
+  display: block;
+  position: relative; /* Changed from absolute */
+}
+
+#current-image {
+  display: block;
+
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+

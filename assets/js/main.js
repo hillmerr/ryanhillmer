@@ -1,10 +1,4 @@
-/**
-* Template Name: MyResume
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 (function() {
   "use strict";
@@ -34,6 +28,28 @@
       }
     }
   }
+
+  (function() {
+    "use strict";
+  
+    // Utility functions
+    const select = (el, all = false) => {
+      el = el.trim();
+      return all ? [...document.querySelectorAll(el)] : document.querySelector(el);
+    };
+  
+    // Preloader removal
+    let preloader = select('#preloader');
+    if (preloader) {
+      window.addEventListener('load', () => {
+        preloader.remove();
+      });
+    }
+  
+    // Other scripts
+    // ...
+  })();
+  
 
   /**
    * Easy on scroll event listener 
@@ -263,9 +279,67 @@
     })
   });
 
-  /**
+    /**
    * Initiate Pure Counter 
    */
+
   new PureCounter();
 
-})()
+  document.addEventListener("DOMContentLoaded", () => {
+    const images = [
+      "assets/img/HILLMERRYAN.jpg",
+      "assets/img/IMG_0037.jpg",
+      "assets/img/95B8DE41-2C77-4D95-807D-72A97ABAA7FD_1_105_c.jpg",
+      "assets/img/IMG_0640.jpg",
+      "assets/img/IMG_1469.jpg",
+      "assets/img/brothers.jpg",
+      "assets/img/IMG_3304.jpg"
+    ];
+  
+    const imageRotator = document.getElementById("image-rotator");
+    const currentImage = document.getElementById("current-image");
+  
+    let currentIndex = 0;
+    let lastMousePosition = { x: null, y: null };
+    let lastChangeTime = 0; // Track the last time an image change occurred
+    const changeRate = 150; // Minimum time (in ms) between changes
+  
+    // Function to change image
+    const changeImage = () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      currentImage.src = images[currentIndex];
+    };
+  
+    // Function to handle mouse movement
+    const handleMouseMove = (event) => {
+      const currentTime = Date.now();
+  
+      // Check if enough time has passed since the last change
+      if (currentTime - lastChangeTime < changeRate) {
+        return;
+      }
+  
+      if (lastMousePosition.x !== null && lastMousePosition.y !== null) {
+        const deltaX = event.clientX - lastMousePosition.x;
+        const deltaY = event.clientY - lastMousePosition.y;
+  
+        if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+          changeImage();
+          lastChangeTime = currentTime; // Update the last change time
+        }
+      }
+      lastMousePosition = { x: event.clientX, y: event.clientY };
+    };
+  
+    // Event listener for mouse move over the image
+    imageRotator.addEventListener("mousemove", handleMouseMove);
+  
+    // Reset lastMousePosition when the mouse leaves
+    imageRotator.addEventListener("mouseleave", () => {
+      lastMousePosition = { x: null, y: null };
+    });
+  });
+  
+  
+  
+})();
