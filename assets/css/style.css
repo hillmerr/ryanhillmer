@@ -849,3 +849,7 @@ section {
   margin-bottom: 20px;
 }
 
+.about p {
+  margin-right: 30px; /* Increase this value as needed */
+  padding-right: 30px; /* Optional: Add padding for finer spacing */
+}
